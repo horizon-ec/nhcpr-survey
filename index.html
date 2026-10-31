@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>National Health Care Policy Review Survey</title>
+<meta name="description" content="An anonymous survey on everyday work in healthcare, conducted by Horizon EC.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Layout: dark masthead band with the sun logo, copper rule, one tall white column of numbered parts, dark footer band. */
+:root {
+  --ink: #1B1F1E;          /* letterhead black band */
+  --copper: #C07A35;       /* letterhead copper */
+  --copper-deep: #9A5E24;
+  --sun: #FFB300;          /* logo gradient top */
+  --sun-deep: #FF8C00;     /* logo gradient bottom */
+  --paper: #FFFFFF;
+  --paper-2: #FBF7F1;      /* warm field background */
+  --line: #E6DCCF;
+  --muted: #6B625A;
+  --err: #B3261E;
+  --display: "Cinzel", "Trajan Pro", Georgia, serif;
+  --body: "Source Sans 3", "Segoe UI", Helvetica, Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+.band { background: var(--ink); color: #fff; }
+.band-inner, .wrap { max-width: 760px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.masthead .band-inner { padding-block: 28px 30px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; }
+.logo-card { background: #fff; border-radius: 5px; padding: 8px 16px; display: inline-flex; }
+.logo-card img { width: 120px; height: auto; display: block; }
+.agency { font-family: var(--display); letter-spacing: .22em; text-transform: uppercase; font-size: 12px; color: var(--sun); }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(24px, 4.6vw, 36px); line-height: 1.2; margin: 0; text-wrap: balance; letter-spacing: .02em; }
+.rule { height: 10px; background: linear-gradient(90deg, var(--copper) 0 62%, var(--sun-deep) 62% 80%, var(--sun) 80%); }
+.intro { padding-block: 34px 10px; }
+.intro p { margin: 0 0 14px; max-width: 64ch; }
+.intro .lead { font-size: 20px; line-height: 1.45; }
+.facts { display: grid; gap: 8px; margin: 18px 0 8px; padding: 0; list-style: none; color: var(--muted); font-size: 15px; }
+.facts li::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--copper); margin-right: 8px; vertical-align: 1px; }
+.sec { padding-block: 30px 10px; border-top: 1px solid var(--line); margin-top: 24px; }
+.sec-head { margin-bottom: 20px; }
+.sec-num { font-family: var(--display); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--copper-deep); }
+h2 { font-family: var(--display); font-weight: 600; font-size: 24px; margin: 6px 0 6px; text-wrap: balance; }
+.sec-blurb { margin: 0; color: var(--muted); }
+.qs { display: grid; gap: 26px; }
+.q { min-width: 0; }
+.ql { display: block; font-weight: 600; margin-bottom: 8px; line-height: 1.35; }
+.req { font-weight: 400; font-size: 13px; color: var(--copper-deep); letter-spacing: .04em; text-transform: uppercase; margin-left: 8px; }
+input[type=text], input[type=number], select, textarea { width: 100%; font: inherit; color: var(--ink); background: var(--paper-2); border: 1px solid var(--line); border-radius: 4px; padding: 11px 13px; }
+textarea { resize: vertical; min-height: 92px; }
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--sun-deep); outline-offset: 1px; border-color: var(--copper); background: #fff; }
+select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='10' viewBox='0 0 14 10'><path d='M1 1l6 6 6-6' fill='none' stroke='%23C07A35' stroke-width='2'/></svg>"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
+.split { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.split label { display: block; font-size: 14px; color: var(--muted); margin-bottom: 6px; }
+.pct { position: relative; }
+.pct input { padding-right: 34px; font-variant-numeric: tabular-nums; }
+.pct span { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+.split-total { font-size: 14px; color: var(--muted); margin-top: 8px; min-height: 1.4em; }
+.split-total.bad { color: var(--err); }
+.rating { display: flex; gap: 10px; }
+.rb { flex: 1; }
+.rb input { position: absolute; opacity: 0; width: 0; height: 0; }
+.rb span { display: block; text-align: center; padding: 12px 0; border: 1px solid var(--line); border-radius: 4px; background: var(--paper-2); font-weight: 600; cursor: pointer; font-variant-numeric: tabular-nums; }
+.rb input:checked + span { background: var(--copper); border-color: var(--copper); color: #fff; }
+.rb input:focus-visible + span { outline: 2px solid var(--sun-deep); outline-offset: 1px; }
+.rating-ends { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); margin-top: 6px; gap: 10px; }
+.submit { border-top: 1px solid var(--line); margin-top: 40px; padding-block: 30px 50px; }
+.submit p { margin: 0 0 18px; color: var(--muted); max-width: 64ch; }
+button { font: inherit; font-weight: 600; font-size: 18px; color: #fff; background: var(--ink); border: 0; border-radius: 4px; padding: 14px 34px; cursor: pointer; letter-spacing: .02em; }
+button:hover { background: #000; }
+button:focus-visible { outline: 2px solid var(--sun-deep); outline-offset: 2px; }
+button[disabled] { opacity: .6; cursor: default; }
+.msg { margin-top: 14px; font-weight: 600; min-height: 1.4em; }
+.msg.err { color: var(--err); }
+.q.invalid select { border-color: var(--err); }
+.done { display: none; padding-block: 60px 80px; text-align: center; }
+.done h2 { font-size: 28px; }
+.done p { color: var(--muted); max-width: 54ch; margin: 10px auto 0; }
+.done .sunline { width: 120px; height: 6px; margin: 22px auto 0; background: linear-gradient(90deg, var(--sun), var(--sun-deep)); border-radius: 3px; }
+body.submitted #form { display: none; }
+body.submitted .done { display: block; }
+.foot .band-inner { padding-block: 22px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; font-size: 14px; color: #D9D2C7; }
+.foot strong { color: #fff; font-family: var(--display); letter-spacing: .14em; text-transform: uppercase; font-size: 12px; }
+@media (max-width: 560px) {
+  .split { grid-template-columns: 1fr; }
+  .logo-card img { width: 104px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .rb span, button { transition: background .15s ease; }
+}
+</style>
+</head>
+<body>
+<header class="band masthead">
+  <div class="band-inner">
+    <div class="logo-card"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAAD4CAIAAABOlut1AAAl10lEQVR42u2dbYxc1Z3mn1Nddr9su8tlMAYaJ0sQaCVMhiEbM1ESxpvpWXZtj1hbqrYNGaNAIJogJPwt0swgxO4HvhmJhRVkYss94La7JFsWtjdeKoEQZzKABgw2YrctxgPtcvsluFzdneoXV92zH07VrVv3rW6933vredRCpruqq/rWOb/7P/9XIaUEFWpJAPl5uXB1NpsZyr1f/O7kIQACWQx8UXrclOOvEGuL/8h9XSIGAHdtVd+YGVi/IhYXfatEtA8QvNpdIkFwhA8UMr8gF66K6RMKEGU6uKChoUW0tsyUu7bqNIkM3kqUEByUj1GRn68gxcAnrWJETTQpoWRmYP3QmjtEtJ+fFMFBdR4WM5c+H8q97xdSVOOIzH2TECE4qM5Im0uL6RPBgEU1iMhbHowMDvMzJTioVpkX2tyFwPPC6Thz14/kLQ/SIUJwUC2wL/qPhfxPnf9eiSC0QQgOqt7oKc6Nh82+qKo8EIWc36ROMWJwmBYIwUF5UjZ9Zij3vjj/HOSU2khdpzwAYNlamfvmzL0vxIbv5hGG4KCqmRj9x7qUF64GCG7fgWg/+UFwUBXIEJN70X+SyLBhhwZEgGVr5W3P8fxCcBAZkHNpMX1CnH9OLk0JAURLVjpllQYA6C3igw5UgqOrkYHFKQCI8KrUgw9aHwRHd4VXy1YGReuD4KCq+zJoZbQAH7h9B3PYCY4wguPsHjG5Fz0niYzW4UPc+SMGbgmOEJ1NfvMTsexYMToQsPr8gCziAhCBLGyaufeF2PA6rjqCI9jVq8WzyfyU7OH1aAs++iDX/oKOD4IDwU0AjZ36G4iTiEAGynz24rL17ZIREtCAfnVyeYzrkOAImqFx7nHkQUOjsycX+eev0vQgOAJiaExuxPxU4AyN0C3rsumBOx/jR0Fw0NDw60aFL2MuND0IDvg4dBL5zXbl0aB8pwKA72Xv/V8MuDRRXOkN54+f3RP54DsAqeFX9QA4OfTP98uze1QuHkWLwwfHk7OPh5bAWsM3Ha3hO1ez8l80QEKCxxaCww/HE+0keipXdtWFrtHOqwVbEWf6RGrGlsxD9PDYQnCgo9GTuSksa+MdHh6QhGbYCJGG36db0U6TLkUjF3mIKeoER/vL1c7uwSdPi+U59LTitwft/KJVI1TEsD0jkH8cKK68VTd07EO8+pVYdUP2ruO0OwiOdlVvnN0rJh/vruOGZrBEIkAP0Fuc+QjANErWpJmB9cb/XRGLu63FvlXN/8AWrrq8HGtqCY62uEJPJIR2rKuCUbIAsaI4P0kfClvadZwyTXBQXopc88e6qyeoBvkfWDNGMY+jgQBK11FDafIQFwBFi6PesGv+ZJf2H9eAwfKoV/oFKILDGzU++A5mprp6aoFW8oz2AP1rkfu6REz3htLrQXBQpIZzeFWze0AEiEAuDBRjq4opSoY4i4qt6CEVFT0hZQiOsFND4/WoBTSmBSXsEGOK5loCukZDhpQhOAJFjewU2Imn1baMdfUpPkQBATlvsWUMUWHRt4pzIQkOn3lDr58kNfwFGsM6lRHg+oBYdUMxwYTjEQgOUoOqASsS0ITs3YhNR2l6gHkc6FBuqPjNT0iNoFUB9DslvFO0ONqyAo/9lbh+rOPU4Afitl618mlFrOAUyI4pyktQGra2V1w/JiPsEeVTUgCQhQGU/BozA+uH1tyBaD9tZlocnRzRiM8e53XocHNj9U1NQJOICESkLBg8oICCBf2gBAd80pVn6J/vFz05Gel0H/Du/CgUKQBEBOK36ZmpesyVpOBRxY9hlNjkRoh5k1VMtYcXcjlE7Db99LEiFo8M3iogAD0zjCI4/BlGmZ+iq6cD1Oj9rrzrR8bTB0lBcARE58bF/DFSo+3NgQbwzZdU1hZhAfo4AucQFad/jAh9w+1VHvJPfsGxjLQ4Apshev65wFv7wSS2OP+cBDR296DFEcjuobnjzBDtEPIkpJCR/mKoFbA2NNUrYiWrYgkOHx1SPn4cES7ITuMDgBTleHVESNlfnJzgWnRv7J9u7Zyud0sX0b7KkluK4EBjWRsyR3D4lyaGY41bSkxEFGtV9J+YZrXkvm5IkfHmh62l7KWbs927CxwyPy9O/GfkfsdDSggp4+xUqfOJVXXTWu3bv+9OdnQZOM7uEad+3I3U0Bg8aoEKkIObxKY3u/Ao1EXgKB9SKKp5MSJ57z90YXQ50j2HlNipvxF5UqPpK0hU+Qq7KSfOPyfn0mzkE9JJ0efGMReQDj1SBOwQ5P4VbvUAl6fE9AnJo0pomw9fZvPhsB0TqhQde3lA40XNUshI/8yfvRcbXgdmjoaKjtMncHEKEaDg0L0y4s0mr6dUPqSGRlCsswavqreni6Xc0KmfYbiLvKTdYnGI6ROoZUKqQLb8PwNfFFfR1a8qm1PNlwMWWo0nQmaRhEx5Kf/jL8SdjxEclAQg8wvF/1m4avzZbDaj/jGUe9+dRGUGDXyh06cMHc2VMuRLUALPGnDzWvn9/9cl1TcER7s6EOcXjPRR3KmATok1AlkMfFHmS142ASvM42gLO7rH6CA4fEoZhZjZbKYMl8lDOlPEUo4jLvw46uXmbsklJTgCxhRt7kLR3atQMvAJLk4RH74yOrohH4zgCIPfV0zuxcxJssMX4Fg+IB+cDL3RQXCEqHiP7PAy5hqtb3G2alPoR1Ky32Yo8K83nmCjdj9sqYW35VxahNro4B0qFM7Us3sxc5IXwi8cz+Wq5A3xqEJ1MMlEqsS2yUNi5hgviL8+nbB7OnhUCU4uWn5eLlwtB2gnD4mFt0Uux4/Rn0YHpk8gvDkdtDh8bVAUMWHK4MgT+/D/FAjcFuZEUoLDj8iYSZ8ZOvUzLLxdgQmSInATZP4stImkdI76jxtn98TevUdcPVZMD40avqhg3ZYn98r8PC0Oqi0zX47cKGZz6OXFaMuBAq11IWYfOB3KPh0Ehx9jq8VM0FYcUvLe3OV5fhBoTjfj1eFMBiM4fGp3zFz6XLlFAYjcFSx+JoUU2pxajtD71lF+32ErtP/2WfjisgRHMDiiArHQK/GNNfi5Jdw4jfQ1KaSIzFUYC0SMH4yO74bQRUpwhKcGH7ZtPhwoo3plAqiwYmy7KBI6DZ9Wwjd7heDouiyyKv2EXMwZba7MF5QQQ6xUBceyQfnQ/w3ZaYXgoBwpIypbClUgRjlfkMXAF0hfg5xFwRkoha5nxwNha9JBcFB1Y6V8UKpIhB/4BOensFSaEs9UIQ1Y8z354P8JUxYpwUE19SgEoBQSEpN7ceWk1+kT4b4yywZnNvw+TAkdBAfVypPO2b3i1KuYfb/b2RG60wrtSKo1dyT1nzsfk/f+BLw3AWJyrwjRhWD9A9WqIHHxwPLeM+BwGAFkPtbmLoQmtkJwUE2YFGMa4wBADHwS+2IKeSBCuxaIAIuzYvqEDMtppat8HLKUiLlQ/lblfDaP0se4uWhFLO6TP9vLu7WfRwfX2XS5JWSmMDAHAPlZaKqJSOkGKwJ4FG5px9brkLeFp24lGrKkbNvZaKblXvzkbpzG2bxQ675GxTwMMBe+GSIdK70lAOL6nP1ukUa0Wv5t58CAAHqAxcrviBZsxQiKVAq40SFyV2R+HqEIygbb4pD5eZwbF5N7kf4cA3NYmi3e9KRllQNuJ20Ba4pCNcOlPeZRO3yYAXAQhMAslkAU2b8MSZV9sC0OuXA18u7jWFI96Z3ve7XuUumXsATll4+jKR/oojoSrmM4ttPvfvBW+cAvcON6ACgAeTDyR/lalcdnHlU6Xbh1bhyTh1TfCizMVhRHRAyWCEV10FAqAKvWyy3vhCD3PGRRFanNXaiom1D1nYufAcDiLDSLuy5S19GGCvGZonV/iAYsQ/bBMLg5whyOtdZ3mnMNcleKAcUlQ3FnTTSR3NVUjVOpfxCGvj5dXqtiV9yJLDIf44+zzMin0IqZCV/bJDYdJTjC2adPTJ8Qp17F1ffJDgpNrXbD2u9h07tBPx5zW1gnv/dHBoeL1VkU1fSgbPpzbe4CGI4N6yw1cepVXgqq+eqZ9lIEACaABQsa2fSnQ6d+Fps+hgK5SrXgTp0PQxoYwVGUNpcW0yfE5N7YhZOs6aRaWDJXEEw5D4V9kXsfk4cimXcxO1ss3CJOfVhdinDljwY8ItuFW0RqcxfE9AmVaRpb/AyzpchrlPuEQhsimQJZD8WUBIefJioKZCOZjzE3C01AyIojCUHAtNd2vJBAbknmFwKdeB4Nq8OiIqdLtyxkCRYC6JHcKtXvebIZhbxMFaq0OLD4mVy4KoLcRjAaSgdnJP15TE6jIKBJAOjRB3xIc7cOsoPJ7O3XH2dns5kYweETZETe/jssTRtIISsiI1zflE9ywAoi6BHZMIAjmz4T+6fHcel9RAQDIlQQbnSS4dhO29pn98TeewbXZhGlUUGx2hhMOfdEDfHWjzEzR0MjPLsxKF/o6lZg0QAvsLl05O2/gyZb+EfQgqGoMIFDQOI3P8HSNHq4vak2pmA0RQX6ODp2SNkrvjiOHq7l1q9yqunqKU35ITjafVKZPARNtgQc3G9UG5RbCnTWeTSYWRsXIl8c5yanAl4JEeCs80BGVcT0CVyXiJAaFEWLA1031Ybq3hytzBTB0aHMGy1c0ZSgG1Aag1uooWUxLY7OaFlrttnQoM03c4MAMDBX/EdzNVAaHz8zx83pa4KrtVHfGhio/HAz/w7xteB4hPZ34mnW73JvG1se4FRNVy7L1dcOuyaeZJFbqm6sDsy5EYTg6Ag+hgYreKHv+YHlEjGb59611fZXzgys1/+9IhaPDN4a3KhKsOeqyPy8mllvAoHjhrdzjpi3tNPh03ZLO+3kgmMAnxZ1V9SkCEAT6FWXcQ16hZk7BuhcWbll9U1Ch8uKWByA6FuFaL9vRx77FxxqMJIRBMa7ushdMW/y/EUAuC4rPuyCWxKO1xVAUc2FTsGho1JEICIRuRm9AvG1cmC1Yoq85cGIz5p3+BYc8vLv9tz06d9jfhr5ys9AVNv83OpU4GhSMPxUq1zhK265fPd/v+m7jxMcNbQUVlaGSH+IRYnCxQpU9xATlD8OLAXPzRl7Kk8x0ZuN5xc5sNrkJVEnFx96QwLg45AASvNczYPm8xexWOloIE24mT26aaSHw6lxOalAnslh4eorNTovYHGRKl9G0Z0BiGhfgBZuIJ2jOkr0jsRFw0SnyZIsrxiipG0b1VoBIGTNt2hUazcfMXyaeuyjV//NzhvbeEuvlO0Otw2FVPxxfatK84b7um2RhWxavZT5BXvbJFfylYhaQhtdXgujtn2h3h1u3ORqh1/vRf9KADZRBofo5pWVWwB42dWmja3v6sq9zXsIwVFjdKY4VyV3BRe/xOJFaEAPurTgxXi4c0GA2vbqEvVW3swtMcWajHPesQmOQHKkOMntX/8F+UuhNRYKdl56lHB5vRcr41a3nHXnq21vOpBztxMcXZuMKC//bs9Nv/8xekSoTIlCiQ6FPqyMq3QAtyyjoLnlKIKj3b4P03g3XPwyVBaHJrHiFjl8nwrmKTqIvlXkAkVwmHFgTDkvcwEVCeZF/+iiRP4SCrJouhsP8CFQQV7+zj+svv/hQE8kpcDq2KZ5NGFfSyZyVwSAzJQAsCgxfy22bLHYCVZzDuD1iHB2KhVYfe3wzKX7Y8PruKyp0FscNocIAMVU0fwlaNLGvWfsXibsKlC6M4x6XQJ98u6/wF1bcfsORPt5PqGCDQ5lQVScJoxJFosS89eQX0ChtNR7ZDmlp+7TRGiK0L3/HRpQEFgmMVR0dswMrB9acwfPL5QPwVH0NSh3Q0Vhu5UOhcViIlbZRii9ASEqvhmpVrHK3hROF0eWCNIjgT6sjMvh+1RUpcQRukuppoJDr8ox2gjGDhfWjjXFCndV5G6kg6w8StgCwkXLZM2Vr17azcvuIwhQNOVKHCnGaCuDLzzaULWBQzqVkCkKAOVDhHTdxj2VPxaNrcNltChaIN1blAdEySTpX4mbv1bMAWMol/ICDu3oJpH+ENcyWFyssBF6HPataNcyIjjajJKCgJRFmiwrpZaW8sesQJHtWwqUP8GhUqF096R9yxzZboIQHH6giQkoEaC33J/KDij0wnYJOKSEJWlCd2SUO/QtSgDFk0thEVKWIyCymhuixxUBTgAiOAJkoRhcJ0YvLP0m3RxVKaZaoLItuDE1q7rHVElxR6EHwHVLxDRvSEzrFVViK1QHzRBbKZSom0FPr4rmqKQSWiIMx8J77oExTGsdR2DNCgVQ0Y44M4U/TJdNklrfqsfDVI8sRS6puqTzwnr9eyRuX6/910N+67VLhbhWpdh2FM6jTNQ/3Aea2NtB8DyVb9H5+ugGlI0WbLaTENUPbn4mgn4qAYr9eIAKf0dlYT4dHwQHwpqAqdtEjs8xDG1BLVOd7B1G5SD3gsO29AcmohUxWiMLYOmXyZAtwUG1O/W+oluqnnrfTpTkS6SoTDClsUARHEHrGKJX+l2bRr5lNcx5YMXN8hvfYkkLRXCE6FiVn5+59PnQqZ+JT38FLDT7Ffouf/d/3vgn/0UMDvOYQdUqRjt9W2givbhX6lf/SuW2IDUoWhyBtCxEZeOistfj4peYuwQpW3JUUfl7g2uKHlBTwRugji2SZKEIjs5HdConaZs9owoTBUPUttV5/erT119RBVMMEVZTPEVvccxICsFBcLQxdAIUy4JMfUlq7TnQUo4YTRLj21NYgTl3wzRRwXWcAllDcHTXacKmMTJMKRt6RwIjHYxFPabsr2AVlzoxxVQSqU5VPb3lJLFeoc9qs05gdB/UZjuuzWWwk8KTXrbLcxbB0Y5JtOY+6aUm6TbFfrDU+zl1LQocIJoFF6s/xWM7JdsmL8Wk214YnLsVD1Mj5pwJ5TJrKujznwmOtp4mZi59Xs6Y0BsLmEBQtbdAt6HBVzyqiif36u0eWcEjZ/vI6uhhalw3gkPm53EiIT48XjQfokBEICqJA5Ko+kGsp7ecjH/XVtz5WHeukmh3rpyZe19YXLnFnOttdElIb+0RSZnwyfoR60tiUQILWLwEAN9YPTOwPkaLg0EQ21ZGXn0cLkf3ZnU2arW1XyD7DIaG6hSjIl/LBfp6cfs3lZXB9HyCo572Isbm73BoLOKprZFOn8XFisWKyp5GXkxD4+gZbv8GSREFegRWVqTGyVsepF+D4OjkpFtTqb5tRzXbzkaeWqupjtM6gLzQR0GnO3FTkMVL1FtBCpVBGxm8lRgmOEJo+9jmlbibP2XuXPyyDB2VjVaQNg0cQ4kYxYtegZVr9OJgkoLgoDzZPibo2Pp3yvlsCjGLi+W7tJEsERGYHVeQuOFm+Y1vzdz7Al0VBAfV8pRZI18q2pqpFJjcQrl1SI/wLTXktzfJP3+VPVAJDsoXZXvlmr1//Rd8ddGn+ChI3HqL/E//gy3OCA7KXzSRc2kxfUL88m/x1cWa2dGUxahJt/CTJpEHlgvEi95Qa3dlACgBhT4PgoNqX2qMOLwBH7/v6wTDvOU70QgGlqvEUD3l3FjhoshiLGmR6NJmSAQH1WSLYyZ9JvZPj/udGjUBpewJLpEFNr0FYCjztfYWUIVzoSnYJTio5lUAnRvH5CHxwf9GXgtzMUPew2OiEQBlygBGK8Z7HxPf1ukSHFQT6owX/+29mz79e1xoZU/2EFPGxBqYS3V9iBuCg2qoKUExhpLv5pLJzrHG1rSx4MaFNXWDhuCgvI7jnM1mFv/tvVLA9TLyWneXWAfZtOmR6O0tsqbyDOXQfMRMFoKDcqwY1qdDFbO8Ll3s+n4M3cQaozO4NAy0XPJHcFAAtLm0eTjDuU+KyaCEBTlitFZuuEl+41sEBw2KQ+W08ZkFYiLMDhEvHlnXw4uebktwdNlASSMpdKcmSeGTbeypY19p+qLa7aa+zc495W0bypvaNXv3lRIc3UGNs3vEL/+2wklB1d9p0zA4Vd+9cGi/XrmZXZqw63tbyXZkhHFShMcZEWA4lmrEhSGmT9g2Byp36DAqMwWgollZR9RbWvyVG8+Nkg570n2XuuxV9wkvtnvYupNLt/HwlL8QHN1d22oac51fcHx8SydgW7aZ2yPLO7C0hh3avEp2UyQ4KIryjyK8BBRFERwURREcFEURHBRFERwURREcFEVRBAdFUQQHRVHwUfI9BX+lceplrAsVBQiWzE5LGiVnT1MER7sGr6Jy+jwcpkCjchy0LtNc6KqyLw/xsPvrhoHHCg5T+Ya1dsOpyMrnnXUpMOW84gadn1eb3zT91Dps2XHOOwyj3gHklkr/0lpeIh3UG03EvqbbudWlPo4kMnhrq6s2KYIDboWeelMJoKL/JY0w+LLfRDSCG25SHehm7n0hNryO15JHlfairm/VzMD6obuKdoe1Ttx8FjDZF7aGRoWtUbI42tCXxf+WBRwaT1TrOmHq6K8ffHTrg6LFEQyPhlNtuNW74d3Z4VEmn0hLVbWpRFU5dZ1w6j2hV8SXPLU8ixAcFEVRYB4HRVEEB0VRBAdFUQQHRVEEB0VRFMFBURTBQVEUwUFRFMFBURTBQVEUwUFRFEVwUBRFcFAUBfbjoCg02gJOWDonuPRPQL39X6xNXiVEl7cPYFk91WEIqG1vbAEJQw8UvZWJtbGruXWrU8cmuDZwgnNrInjtVGTsk4hSQ5MVsbjoWyWifaHslkhwUO3lRH4e58b1jrDl/o9qP+eWmtkF0qO13Yo+b9EIBpajf6Xqlnhl5Zbef39/bPju0JgpPKpQ7QXHwlVRMh+KJsPNX8PFL4s3/H6DRbC4iIJoYSfHfPO6K/ZI9PY6dW8umks5IfN3iGg/LQ6KatpRpZFpFWhGu8Y6Wi6aeix21bwIgoOiKDAcS1EUwUFRFOgcpSh0VxRp5tLnpm8OrQm8l7QD4EgdPfDa2CHbH215aPOOR3a6P338jbHDR47a/ujJnVtHNm/nYqWc9vC2hx+t++leFqf+Utn0p8ff+fDwkaOpVApAJlP29cbjcQAjIyNbHtq8ccN9AYVIB8Dx7T9d99rYoVQqZbqaIyMjXp6+OrYcQN1Pp7pZWx7afPjI0WQyWd/Tq4JD5ucPHEzqL2G7LNXSTSaT6jGJREIRJFhjMTsWVUkdPfCXf7VD/9/9r+/zjPOi3fHwD8t3j7feHKetQXk0B0ZHt+nsiMfjE2OvuD/htbFDyWQykUhMTExUNaWTyaTixZM7t/5gw/cjg8O2h5fj73z41NPP6De/RCJxcP++IJkeskO6dv608W3sf31fTU9/681x49PfenNcUpQ3JRIJfeUkEomqjy/Mno/H4y6P1K7n9N+ZSCSunT/t5W1o13P7X9+nTi7xeNzjs3yiTkZV1CWjqM5nwbsqMjjschDW5tLbHn5UGRpvvTk+MTHh8dAhov07Htl57vS7iUQik8kcf+dD+jgoKlR6cufWK9klW2psf2yXosbE2Ct1nJdjw+sO7t8H4PCRozse+eugZJoSHBRVXQ5EkA1SQzc9JiYOZtOf0uLwr1maTX/6wUdnrmSXVEx3y0ObAayOLbf1Y+mm7K9+eQTOQSIAK2Jxp6dblU2f+eCjM9bfo5u4tg+A56CVexWmNpf+9Tu/VfdP/SKsji03vgH3N+zyyFY83bcaf+MflZP15ZdebNg3LwJ2TTroHDX6OFrtHFWOKKNXzOpwcXJrKdeX8d3GSzI93aOP1vpOEomE8Qq4vM+qcrmS186fNv0h1iuw//V92vWc7RvWn1irJ093Aarn1vpZt9o5av17a1rA8Xi8vt8QaHUFON56c1y9ViKRUHtD7QTrLiota81Kj/2v7zO+22vnT187f/qtN8dNvySRSNg93QZG+rOsa1f9Tv2tun95iREUZs+rh5l+rS1HHACqGT+yWtmhgmjxeLwwe95vUZX6tr2+HjrOQYKjFeAobviSOaBZ34bxfuiymIyvaHo5dSev9W8xBvCsP/ISJrQGAm33gLrUionWfatdzyn8mQBqe0mN9KyJHVUjmsECh/pzghhGDUM4tj2pPg//8NH9r++bmJgY2bzdevKPDa/TQ2L6N5PJ5LaHHzW0tqzuGP/57md1+hw+crRqhA/VEhyf3LnVYw61nqT4893PWjOIsukzt9/zwMjIyLnT7+54ZKfVESOi/SObt09MHDQCNJPJjO78aeroAdil7eqPeWLX89pcugt9pb9+57cqd2tkZGRozR1gdWyYpHxXXnJSY8PrJiYmjDsnmUyOv/GPNQXV9FB/KpWy1jWhxtRmL862AweTOjUmxl6xete0ubSixoE9u6v53oQJoIodtlzQ/TvJZHL7Y7sapGQQZSy2Ck1TL4KjeKdVtob3TPYdj+x8+aUX9f996ulnarqderERmorFctK9k1d/+2O7APx897MeIz6x4XUH9uw2suPgkV/ZxCZHRvQLpayzrmKHzM+r0jWwH4dPPg/vX7bZOMZf9sSu5+Px+PZtiVpv9fox3mnbuMRB25YLm02feerpZ/RTui0cU0cPJJPJl196saY4X2Rw2HjscqKn8ULVerKrdV2kjh4Yf2NsdHR0/I2xbPpM01/A3WTIps+Mjo4aydigOQn242iinnr6GX0noAkVdAfVIaUOM3L7toRe3VhfMt/IyEhs+O6WUuP2ex5QZ2xVHOVkTsfj8W0P/QVqz2WcGHtFlSBmMplfv/NbW3NmxyM79QuVTCZHR+FeA1bfX/rEruf1gjSVavXySy82McMylUqNjo66P6DYY7lktX3w0RljZTbBEbYj6MYN99V3/3ly51a1WFOplDZ3waOdf/ydD9V6enLn1tYlDsv8/BO7nlcvFI/HD+zZbQvHbPpMKpUaGRnxnpZmSpRMJA6pi+Bi3E1MHBwdhc6O8TfGaipxdpc2lzZSQzcD1QGtWS+kKtzRUFGV7MLZTH45qrz80otfXU57/zI6I6wLLpVKNXJqGNm8TT/nW9ttO+1nlYWZSCRGNm9r3YUyhlHOnX7XiQs6xdBAdQZKQSIXzB7cX04kefiHj46/Mdasv1RlczvZp806s6h4qsuXezKeurXQ4uikajpWGOOCsAuVNeZuEFse2uy93Yte6VQ6OIjWOUT1d2UbRtFlTKivTz/Y8P14PF6VPiLar85K6o2p82bj5oCiv4uZ8MSu55tyMhoZGXH3AR3cv2/m0uemQZDGd+J0lKPFETBV85s2Cib1Espjp5x2N37tHuVSaWkvltTRA7obaP/r+1wWq+72dzUW0EgtuZUd6s6cyWSeevoZawII6k2U8DZDtlmzaO3/utjwOuPHavKCO/XBpMURSDVoqKvSNVRO2TGayrYv1DpqZNNnRnf+VHeI7njkr92npaGp7fa8sOPAnt3K7lAJIBNjaOl9OJVKyfxCR3IoTBlfqVRK5ue7LZsjzAlgTemMYmujToy98ocvT//hy9PGjKkmHrxdHKKJROLAnt3upyHdL6PWdJtW0uDwz3c/q9sdozt/2sjVqBrbHhkZ6dReFdF+oy2WyWRciqcJjuCpEUO96uqMDA5HBodjw+ue3LlVLXF18G7BRpWmvPKqgRLdSspkMo0nHXgPThlT7zOZzO33PKCzw6OP2XhXdz8oNeK+aboV9trYoZalsRAcbVcqlar7pqesFS+rc2Tzdn2JJ5PJAweTaE3TB6e8clsrSX9LT+x6vpGTfzwer6kWIza87tzpd40kra+YRUT7XS5+ffkpTdTGDfcZDaJkMpk6epDgCLb0O6RauHVbK95X54E9u42plk08sBgdot67xRitpLrpmU1/qhJPaz0RGNmhF7PYuorgOYvXRI2JsVfqy09ploylSbrR0VV59yEEx9CaO3S/Q33bJps+k0wmvWdPRQaH9Rb7TTyw1OQQhUMWRomeNRvSKme/viQ6lXuqs2Pbw4/WelQxskNvGqIK88+dftcP4U9jYr4h775rFMp+HMY7VSKRqLF5jKZWqqnPgks/jvqa7rv04/DYaMNjn466L6/1Wer7Httq6P2T1FMa6MehqVysZjUBsnxSWn2/x2oQNampj1b3W2Ijn4bAYdo2NbFDrQYrGqqCw/SiVdsIuoJD039aY6sYrTB7Xi074xuuqWGf+mhcuhl53/9GdtT0xLY18qmp8Z+1O6Q1r7RBdqhcVf83Bwqnc1RE+42WpDppVz2zyPy8qlV3T6/y+KKNxCPrcIjqjontj+2S+YVSvUnCWOIx/sZY1TOLqqBTpnjj8c6RzdtffulFnw/Q8Zj2otLqTOmFxox7lPLuR0dH63MJj78xpi5+AJoDhbh1oOl2p+66TrcXvX2e0zupanHU2lzPyeIwvu06LovxFmoygtznjBVmz6tWRi5vu1aLw3RNfGhxeL/I6q+wPlj1wbZ6cF0Wm0v3xqD0IuxU5qg0VWEdPnJ0+7aE51ucNIH/SnbJWqQ4snn7xBh0/6K66z719DMvv/SimgYAQB+VoEq2ax1h6zSXWFVwqlyGl196ceOG+1bE4rPZzBO7nncfem5yiG7ccJ93s+WDj86Y0p9NhSTFwGEqpUalGy+CPgY8kUj8fPezzW3Vb7wmHZfVFnjq6WcOHznqHnrX5847DWRbHVuuBscaTTzjYhtac4eI9gECkDK/IBeuzmYzxiuvx86CMSeh/ayytsaF3YgA77MF3KcTuM8EMN4fnEhvnPFpfKsu9xPT4/VxCuqGb7oC+ps3WWGot9zT1jdR9SK4j3cwzpdwGSXhfp/vrMVhHXOBpk6f0A0H60von74u6/Kouqi63eL49p+ue23skNW685joqcrPvD9d9RPNps8cf+dD9Rj91qFC8U5Txa1ZpPpNqepb3fHIzo0b7tNfEcCWhzZv3HBf8Wby0RnTn6A/zPgqDbh4+myy1DZvSx09qMwr0xWoeG/VHAHqbdeRlXtw/75f/fJIZ7tXqGvbyBV2qX5UbZ9HNm/XR14Z15ux8Yc+rEO3+4bW3BGsapf/D7b8lRPweh9uAAAAAElFTkSuQmCC" alt="Horizon EC"></div>
+    <h1>National Health Care Policy Review Survey</h1>
+  </div>
+</header>
+<div class="rule"></div>
+
+<main class="wrap">
+  <div class="intro">
+    <p class="lead">Horizon EC is gathering first-hand accounts of everyday work in healthcare from the people who do it: clinicians, nurses, technicians, administrative, billing, legal and IT staff.</p>
+    <p>Your answers describe how care is actually delivered, where the system helps and where it gets in the way. Write as much or as little as you like. Plain, specific answers are the most useful.</p>
+    <ul class="facts">
+      <li>Anonymous. No name, email or IP address is recorded.</li>
+      <li>Every question except your role is optional.</li>
+      <li>About 15 minutes if you answer everything.</li>
+      <li>Please leave out patient names and identifying details.</li>
+    </ul>
+  </div>
+
+  <form id="form" novalidate>
+    <section class="sec" id="sec1"><div class="sec-head"><span class="sec-num">Part 1 of 7</span><h2>About you</h2><p class="sec-blurb">A few facts about your role so answers can be grouped by profession and setting.</p></div><div class="qs"><div class="q" data-q="role"><label class="ql" for="role">What is your role? <span class="req">required</span></label><select id="role" name="role" required><option value="">Select one</option><option value="Physician (MD/DO)">Physician (MD/DO)</option><option value="Physician Assistant (PA)">Physician Assistant (PA)</option><option value="Nurse Practitioner (NP)">Nurse Practitioner (NP)</option><option value="Registered Nurse (RN)">Registered Nurse (RN)</option><option value="LPN / LVN">LPN / LVN</option><option value="Medical Assistant">Medical Assistant</option><option value="Technician / Technologist">Technician / Technologist</option><option value="Pharmacist / Pharmacy staff">Pharmacist / Pharmacy staff</option><option value="Therapist (PT/OT/SLP/RT)">Therapist (PT/OT/SLP/RT)</option><option value="Admin / Front desk / Scheduling">Admin / Front desk / Scheduling</option><option value="Billing / Coding / Revenue cycle">Billing / Coding / Revenue cycle</option><option value="Legal / Compliance / Risk">Legal / Compliance / Risk</option><option value="IT / Informatics">IT / Informatics</option><option value="Leadership / Management">Leadership / Management</option><option value="Other">Other</option></select></div><div class="q" data-q="years"><label class="ql" for="years">Years working in healthcare</label><select id="years" name="years"><option value="">Select one</option><option value="0-2 years">0-2 years</option><option value="3-5 years">3-5 years</option><option value="6-10 years">6-10 years</option><option value="11-20 years">11-20 years</option><option value="More than 20 years">More than 20 years</option></select></div><div class="q" data-q="credential"><label class="ql" for="credential">Highest clinical or professional credential</label><input type="text" id="credential" name="credential" placeholder="e.g. PA-C, BSN, CPC, JD" autocomplete="off"></div><div class="q" data-q="location"><label class="ql" for="location">Country and state or province where you work</label><input type="text" id="location" name="location" placeholder="e.g. United States, New Mexico" autocomplete="off"></div><div class="q" data-q="setting"><label class="ql" for="setting">Primary practice setting</label><select id="setting" name="setting"><option value="">Select one</option><option value="Hospital inpatient">Hospital inpatient</option><option value="Emergency department">Emergency department</option><option value="Outpatient clinic">Outpatient clinic</option><option value="Urgent care">Urgent care</option><option value="Surgical / procedural">Surgical / procedural</option><option value="Long-term care / skilled nursing">Long-term care / skilled nursing</option><option value="Telehealth">Telehealth</option><option value="Home health">Home health</option><option value="Other">Other</option></select></div><div class="q" data-q="specialty"><label class="ql" for="specialty">Specialty or department</label><input type="text" id="specialty" name="specialty" placeholder="e.g. Emergency medicine, Oncology, Patient accounts" autocomplete="off"></div><div class="q" data-q="employer"><label class="ql" for="employer">Employer type</label><select id="employer" name="employer"><option value="">Select one</option><option value="Health system / hospital network">Health system / hospital network</option><option value="Private practice / group">Private practice / group</option><option value="Academic medical center">Academic medical center</option><option value="Government / VA / military">Government / VA / military</option><option value="Staffing agency / locums">Staffing agency / locums</option><option value="Other">Other</option></select></div></div></section><section class="sec" id="sec2"><div class="sec-head"><span class="sec-num">Part 2 of 7</span><h2>Your work day</h2><p class="sec-blurb">How a typical shift actually divides up.</p></div><div class="qs"><div class="q" data-q="time_split"><label class="ql" for="time_split">Roughly what share of your shift goes to each of these? (should total 100)</label><div class="split"><div><label for="pct_patient">Direct patient contact</label><div class="pct"><input type="number" id="pct_patient" name="pct_patient" min="0" max="100" inputmode="numeric"><span>%</span></div></div><div><label for="pct_docs">Documentation and charting</label><div class="pct"><input type="number" id="pct_docs" name="pct_docs" min="0" max="100" inputmode="numeric"><span>%</span></div></div><div><label for="pct_other">Everything else</label><div class="pct"><input type="number" id="pct_other" name="pct_other" min="0" max="100" inputmode="numeric"><span>%</span></div></div></div><div class="split-total" id="split_total"></div></div><div class="q" data-q="low_value"><label class="ql" for="low_value">Which tasks eat the most time relative to their value?</label><textarea id="low_value" name="low_value" rows="3"></textarea></div><div class="q" data-q="delegable"><label class="ql" for="delegable">Which tasks do you do that someone with less training could do?</label><textarea id="delegable" name="delegable" rows="3"></textarea></div><div class="q" data-q="orphan"><label class="ql" for="orphan">Which tasks do you do that nobody is officially responsible for?</label><textarea id="orphan" name="orphan" rows="3"></textarea></div></div></section><section class="sec" id="sec3"><div class="sec-head"><span class="sec-num">Part 3 of 7</span><h2>Bottlenecks and problems</h2><p class="sec-blurb">Where the day slows down.</p></div><div class="qs"><div class="q" data-q="slows"><label class="ql" for="slows">What slows you down most on a typical day?</label><textarea id="slows" name="slows" rows="3"></textarea></div><div class="q" data-q="waiting"><label class="ql" for="waiting">Where do you wait on other people, departments or systems?</label><textarea id="waiting" name="waiting" rows="3"></textarea></div><div class="q" data-q="info_gap"><label class="ql" for="info_gap">What information do you need that is hard to find or arrives late?</label><textarea id="info_gap" name="info_gap" rows="3"></textarea></div><div class="q" data-q="workaround"><label class="ql" for="workaround">What do you work around or do manually because the official process does not work?</label><textarea id="workaround" name="workaround" rows="3"></textarea></div><div class="q" data-q="dropped"><label class="ql" for="dropped">What gets dropped or forgotten most often, and why?</label><textarea id="dropped" name="dropped" rows="3"></textarea></div></div></section><section class="sec" id="sec4"><div class="sec-head"><span class="sec-num">Part 4 of 7</span><h2>Errors and risk</h2><p class="sec-blurb">Where things go wrong, or nearly do. No names, no patient details.</p></div><div class="qs"><div class="q" data-q="errors_where"><label class="ql" for="errors_where">Where do mistakes happen most in your work or around you?</label><textarea id="errors_where" name="errors_where" rows="3"></textarea></div><div class="q" data-q="near_miss"><label class="ql" for="near_miss">What near misses have you seen in the last year?</label><textarea id="near_miss" name="near_miss" rows="3"></textarea></div><div class="q" data-q="caught_late"><label class="ql" for="caught_late">Which errors are caught late or never?</label><textarea id="caught_late" name="caught_late" rows="3"></textarea></div><div class="q" data-q="worry"><label class="ql" for="worry">What keeps you up at night about your job?</label><textarea id="worry" name="worry" rows="3"></textarea></div></div></section><section class="sec" id="sec5"><div class="sec-head"><span class="sec-num">Part 5 of 7</span><h2>Tools and systems</h2><p class="sec-blurb">The software, devices and paper you touch every day.</p></div><div class="qs"><div class="q" data-q="software"><label class="ql" for="software">Which software or systems do you use daily?</label><textarea id="software" name="software" rows="3"></textarea></div><div class="q" data-q="ehr_rating"><label class="ql" for="ehr_rating">Rate your main EHR or primary system</label><div class="rating" role="radiogroup" aria-label="EHR rating"><label class="rb"><input type="radio" name="ehr_rating" id="ehr_1" value="1"><span>1</span></label><label class="rb"><input type="radio" name="ehr_rating" id="ehr_2" value="2"><span>2</span></label><label class="rb"><input type="radio" name="ehr_rating" id="ehr_3" value="3"><span>3</span></label><label class="rb"><input type="radio" name="ehr_rating" id="ehr_4" value="4"><span>4</span></label><label class="rb"><input type="radio" name="ehr_rating" id="ehr_5" value="5"><span>5</span></label></div><div class="rating-ends"><span>1 = fights me every step</span><span>5 = gets out of my way</span></div></div><div class="q" data-q="tools_good"><label class="ql" for="tools_good">What in your tools works well?</label><textarea id="tools_good" name="tools_good" rows="3"></textarea></div><div class="q" data-q="tools_bad"><label class="ql" for="tools_bad">What in your tools makes you angry?</label><textarea id="tools_bad" name="tools_bad" rows="3"></textarea></div><div class="q" data-q="paper"><label class="ql" for="paper">What do you still do on paper, by phone, by fax or in your head?</label><textarea id="paper" name="paper" rows="3"></textarea></div></div></section><section class="sec" id="sec6"><div class="sec-head"><span class="sec-num">Part 6 of 7</span><h2>What works and what does not</h2><p class="sec-blurb">The good parts, the dead weight, and what you have seen done better.</p></div><div class="qs"><div class="q" data-q="runs_well"><label class="ql" for="runs_well">What part of your workplace runs well, and why?</label><textarea id="runs_well" name="runs_well" rows="3"></textarea></div><div class="q" data-q="kill"><label class="ql" for="kill">What process would you kill tomorrow if you could?</label><textarea id="kill" name="kill" rows="3"></textarea></div><div class="q" data-q="elsewhere"><label class="ql" for="elsewhere">What have you seen another site or employer do better?</label><textarea id="elsewhere" name="elsewhere" rows="3"></textarea></div></div></section><section class="sec" id="sec7"><div class="sec-head"><span class="sec-num">Part 7 of 7</span><h2>Wishes</h2><p class="sec-blurb">If you could change things.</p></div><div class="qs"><div class="q" data-q="vanish"><label class="ql" for="vanish">If one task disappeared from your week, which one?</label><textarea id="vanish" name="vanish" rows="3"></textarea></div><div class="q" data-q="assistant"><label class="ql" for="assistant">If you had a magic assistant for one thing, what would it do?</label><textarea id="assistant" name="assistant" rows="3"></textarea></div><div class="q" data-q="pay"><label class="ql" for="pay">What would you or your department pay for?</label><textarea id="pay" name="pay" rows="3"></textarea></div><div class="q" data-q="anything"><label class="ql" for="anything">Anything else you want to say?</label><textarea id="anything" name="anything" rows="3"></textarea></div></div></section>
+    <div class="submit">
+      <p>When you press Submit, your answers are sent once and cannot be edited afterwards. Nothing is sent until you press the button.</p>
+      <button type="submit" id="btn">Submit my answers</button>
+      <div class="msg" id="msg" aria-live="polite"></div>
+    </div>
+  </form>
+
+  <div class="done" id="done">
+    <h2>Thank you</h2>
+    <p>Your answers have been recorded. Please share the link with colleagues in any healthcare role. The more roles and settings represented, the clearer the picture.</p>
+    <div class="sunline"></div>
+  </div>
+</main>
+
+<footer class="band foot">
+  <div class="band-inner">
+    <span><strong>Horizon EC</strong></span>
+    <span>National Health Care Policy Review Survey</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var ENDPOINT = "https://script.google.com/macros/s/AKfycbwDjuHI1mCqQ2-k5TSnZF7JYG8VLafSGnQqW2X6OQquumYYArFh7Z6f1Oyx4wGy01Ma/exec";
+  var FIELDS = ["role", "years", "credential", "location", "setting", "specialty", "employer", "pct_patient", "pct_docs", "pct_other", "low_value", "delegable", "orphan", "slows", "waiting", "info_gap", "workaround", "dropped", "errors_where", "near_miss", "caught_late", "worry", "software", "ehr_rating", "tools_good", "tools_bad", "paper", "runs_well", "kill", "elsewhere", "vanish", "assistant", "pay", "anything"];
+  var form = document.getElementById("form");
+  var msg = document.getElementById("msg");
+  var btn = document.getElementById("btn");
+  var KEY = "nhcprs-draft";
+
+  // Draft restore (per browser only), so a closed tab does not lose 15 minutes of typing.
+  try {
+    var d = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (d) FIELDS.forEach(function (id) {
+      if (id === "ehr_rating") { var r = form.querySelector('input[name=ehr_rating][value="' + d[id] + '"]'); if (r) r.checked = true; return; }
+      var el = document.getElementById(id); if (el && d[id] != null) el.value = d[id];
+    });
+  } catch (e) {}
+
+  function collect() {
+    var out = {};
+    FIELDS.forEach(function (id) {
+      if (id === "ehr_rating") { var r = form.querySelector("input[name=ehr_rating]:checked"); out[id] = r ? r.value : ""; return; }
+      var el = document.getElementById(id); out[id] = el ? el.value.trim() : "";
+    });
+    return out;
+  }
+  function saveDraft() { try { localStorage.setItem(KEY, JSON.stringify(collect())); } catch (e) {} }
+  form.addEventListener("input", saveDraft);
+  form.addEventListener("change", saveDraft);
+
+  // Percent split feedback
+  var tot = document.getElementById("split_total");
+  function splitCheck() {
+    var a = ["pct_patient", "pct_docs", "pct_other"].map(function (id) { return Number(document.getElementById(id).value) || 0; });
+    var s = a[0] + a[1] + a[2];
+    if (!s) { tot.textContent = ""; tot.className = "split-total"; return; }
+    tot.textContent = "Total: " + s + "%" + (s === 100 ? "" : " (aim for 100)");
+    tot.className = "split-total" + (s === 100 ? "" : " bad");
+  }
+  ["pct_patient", "pct_docs", "pct_other"].forEach(function (id) { document.getElementById(id).addEventListener("input", splitCheck); });
+  splitCheck();
+
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var roleQ = form.querySelector('[data-q=role]');
+    var role = document.getElementById("role");
+    if (!role.value) {
+      roleQ.classList.add("invalid");
+      msg.className = "msg err"; msg.textContent = "Please select your role in Part 1 before submitting.";
+      role.focus(); roleQ.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+    roleQ.classList.remove("invalid");
+    var data = collect();
+    data.submitted_at = new Date().toISOString();
+    data.user_agent_family = /Mobi/.test(navigator.userAgent) ? "mobile" : "desktop";
+    btn.disabled = true; msg.className = "msg"; msg.textContent = "Sending...";
+    fetch(ENDPOINT, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(data) })
+      .then(function () {
+        try { localStorage.removeItem(KEY); } catch (e) {}
+        document.body.classList.add("submitted");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      })
+      .catch(function () {
+        btn.disabled = false; msg.className = "msg err";
+        msg.textContent = "Your answers could not be sent. Check your connection and press Submit again. Your draft is kept in this browser.";
+      });
+  });
+})();
+</script>
+</body>
+</html>
